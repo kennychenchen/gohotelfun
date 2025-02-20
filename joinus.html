@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 添加 SEO 关键字 -->
+  <meta name="keywords" content="go hotel fun，中国热门酒店品牌,首旅如家,锦江,华住,东呈,亚朵,金陵,德胧,尚美,白天鹅">
+  <meta name="description" content="go hotel fun，展示中国，非中国地区热门酒店品牌信息。你可以在这里预定，查看，分享">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- 引入 Font Awesome 图标库，用于社交媒体图标 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta http-equiv="Cache-Control" content="public, max-age=31536000">
+  <title>Go Hotel Fun | 发现有趣酒店</title>
+  <style>
+    /* 保持原有基础样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Microsoft Yahei', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f8f9fa;
+    }
+
+    .navbar {
+      background: #fff;
+      padding: 1rem 5%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    /* 加入我们专属样式 */
+    .join-container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      color: #2c3e50;
+      text-align: center;
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      width: 60px;
+      height: 3px;
+      background: #e74c3c;
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* 职位列表 */
+    .job-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .job-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .job-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .job-title {
+      color: #e74c3c;
+      margin-bottom: 1rem;
+    }
+
+    .job-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      color: #7f8c8d;
+    }
+
+    .job-type {
+      background: #f1f2f6;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9em;
+    }
+
+    /* 申请表单 */
+    .application-form {
+      background: #fff;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: 3rem auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #eee;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    .form-input:focus {
+      border-color: #e74c3c;
+      outline: none;
+    }
+
+    .file-upload {
+      border: 2px dashed #eee;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      background: #e74c3c;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background: #c0392b;
+    }
+
+    /* 联系方式 */
+    .contact-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: 2rem auto;
+      text-align: center;
+    }
+
+    .contact-icon {
+      font-size: 2rem;
+      color: #e74c3c;
+      margin-bottom: 1rem;
+    }
+
+    /* 保持页脚样式统一 */
+    footer {
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 3rem 5%;
+      margin-top: 3rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .copyright {
+      text-align: center;
+      padding: 1rem;
+      background: #1a252f;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .job-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="logo">Go Hotel Fun</div>
+</nav>
+
+<div class="join-container">
+  <h1 class="section-title">加入我们的团队</h1>
+
+  <div class="job-grid">
+    <div class="job-card">
+      <h2 class="job-title">酒店体验师</h2>
+      <div class="job-meta">
+        <span><i class="fas fa-map-marker-alt"></i> 上海</span>
+        <span class="job-type">全职</span>
+      </div>
+      <p>负责体验和评估合作酒店，撰写体验报告，发现特色服务亮点。</p>
+    </div>
+
+    <div class="job-card">
+      <h2 class="job-title">内容运营</h2>
+      <div class="job-meta">
+        <span><i class="fas fa-map-marker-alt"></i> 远程</span>
+        <span class="job-type">兼职</span>
+      </div>
+      <p>负责新媒体平台内容策划与运营，制作酒店主题创意内容。</p>
+    </div>
+
+    <div class="job-card">
+      <h2 class="job-title">前端开发工程师</h2>
+      <div class="job-meta">
+        <span><i class="fas fa-map-marker-alt"></i> 北京</span>
+        <span class="job-type">全职</span>
+      </div>
+      <p>负责网站前端开发与优化，实现交互设计和用户体验提升。</p>
+    </div>
+  </div>
+
+  <div class="application-form">
+    <h2 class="section-title">职位申请</h2>
+    <form>
+      <div class="form-group">
+        <label class="form-label">申请职位</label>
+        <select class="form-input">
+          <option>请选择职位</option>
+          <option>酒店体验师</option>
+          <option>内容运营</option>
+          <option>前端开发工程师</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">姓名</label>
+        <input type="text" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">电子邮箱</label>
+        <input type="email" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">上传简历</label>
+        <div class="file-upload">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p>点击上传简历（PDF/Word）</p>
+          <input type="file" hidden accept=".pdf,.doc,.docx">
+        </div>
+      </div>
+      <button type="submit" class="submit-btn">提交申请</button>
+    </form>
+  </div>
+
+  <div class="contact-card">
+    <i class="fas fa-headset contact-icon"></i>
+    <h3>招聘咨询</h3>
+    <p>邮箱：<a href="mailto:hr@gohotel.fun">hr@gohotel.fun</a></p>
+    <p>电话：021-1234-5678</p>
+    <p>地址：上海市黄浦区创新大厦12层</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>关于我们</h3>
+      <ul class="footer-links">
+        <li><a href="#">品牌故事</a></li>
+        <li><a href="#">团队介绍</a></li>
+        <li><a href="#">媒体报道</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>合作伙伴</h3>
+      <ul class="footer-links">
+        <li><a href="#">酒店加盟</a></li>
+        <li><a href="#">人才合作</a></li>
+        <li><a href="#">高校合作</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>关注我们</h3>
+      <ul class="footer-links">
+        <li><a href="#">微信公众号</a></li>
+        <li><a href="#">新浪微博</a></li>
+        <li><a href="#">领英主页</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    © 2023 Go Hotel Fun 沪ICP备12345678号
+  </div>
+</footer>
+</body>
+</html>

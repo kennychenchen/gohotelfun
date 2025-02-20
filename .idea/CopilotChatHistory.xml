@@ -4,6 +4,12 @@
     <option name="conversations">
       <list>
         <Conversation>
+          <option name="createTime" value="1740046805080" />
+          <option name="id" value="019522df2858746eb28ebc64d386219b" />
+          <option name="title" value="新对话 2025年2月20日 18:20:05" />
+          <option name="updateTime" value="1740046805080" />
+        </Conversation>
+        <Conversation>
           <option name="createTime" value="1740039485193" />
           <option name="id" value="0195226f77097634a3a6c76cfdbc3fda" />
           <option name="title" value="做一个网页，参照 https://fxsh.com/&#10;&#10;主要是收录全国酒店品牌&#10;&#10;按照酒店对应集团品" />

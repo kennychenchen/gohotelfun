@@ -64,3 +64,56 @@ footer {
     text-align: center;
     padding: 10px 0;
 }
+
+/* footer.css */
+.footer-columns {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.footer-column {
+    width: 30%;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 5px;
+}
+
+.footer-column ul li a {
+    color: #333;
+    text-decoration: none;
+}
+
+.footer-column ul li a:hover {
+    text-decoration: underline;
+}
+
+.social-icons {
+    display: flex;
+}
+
+.social-icons li {
+    margin-right: 10px;
+}
+
+.social-icons li a {
+    color: #333;
+    font-size: 20px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}

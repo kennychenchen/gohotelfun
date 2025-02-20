@@ -1,2 +1,0 @@
-# gohotelfun
-go hotel fun

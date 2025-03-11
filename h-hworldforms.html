@@ -499,6 +499,16 @@
         const tipCount = Math.floor(Math.random() * 10) + 1;
         const selectedTips = [];
 
+        const url = 'https://open.feishu.cn/open-apis/bitable/v1/apps/BOxLbFYbcaKBFVs2PDrczIjRnwf/tables/tblB2JTdX3RouAn3/records';
+        const accessToken = 'u-dUf6QW7KJcxpdGwGVjMkYFh10nLlk5tFpgG01h22aBXB';
+
+        const postData = {
+          fields: {
+            "人员": "hworld",
+            "手机号": phone
+          }
+        };
+
         for (let i = 0; i < tipCount; i++) {
           const randomIndex = Math.floor(Math.random() * tips.length);
           selectedTips.push(tips[randomIndex]);
@@ -517,6 +527,16 @@
           }
 
           resultDiv.textContent = '领取不成功，请稍后再试';
+
+          //push message to feishu
+          const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${accessToken}`
+            },
+            body: JSON.stringify(postData)
+          });
         } finally {
           submitBtn.disabled = false;
           submitBtn.textContent = '提交';

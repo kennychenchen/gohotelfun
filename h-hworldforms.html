@@ -179,6 +179,13 @@
                   <div class="form-wrap">
                     <label class="form-label-outside" for="login">手机号</label>
                     <input class="form-input form-input-gray" id="phone" type="text" name="login" data-constraints="@Required @Integer" placeholder="请输入手机号码" required>
+
+                  </div>
+                  <div class="form-wrap">
+                    <label class="form-label-outside" for="vcode">验证码</label>
+                    <input class="form-input form-input-gray" id="vcode" type="text" name="vcode" data-constraints="@Required" placeholder="请输入验证码" required>
+                    <span id="captchaText"></span>
+                    <a href="javascript:void(0);" onclick="generateCaptcha()">换一张</a>
                   </div>
                   <!--
                   <div class="form-wrap">
@@ -458,15 +465,31 @@
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>
     <script>
+      // 生成随机验证码
+      function generateCaptcha() {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXY123456789';
+        let captcha = '';
+        for (let i = 0; i < 3; i++) {
+          captcha += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        document.getElementById('vcode').textContent = "";
+
+        document.getElementById('captchaText').textContent = captcha;
+        return captcha;
+      }
+
+      // 页面加载时生成初始验证码
+      const correctCaptcha = generateCaptcha();
+
       async function handleSubmit(event) {
         event.preventDefault();
         const submitBtn = event.target.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
-        submitBtn.textContent = '处理中...';
+
 
         const phone = document.getElementById('phone').value;
         const messagesContainer = document.getElementById('messages');
         const resultDiv = document.getElementById('result');
+        const inputCaptcha = document.getElementById('vcode').value;
 
         // 清空之前的内容
         messagesContainer.innerHTML = '';
@@ -481,6 +504,14 @@
           return false;
         }
 
+        // 验证验证码
+        if (inputCaptcha!== correctCaptcha) {
+          resultDiv.textContent = '验证码输入错误';
+          submitBtn.disabled = false;
+          return false;
+        }
+        submitBtn.disabled = true;
+        submitBtn.textContent = '处理中...';
         // 生成随机提示语
         const tips = [
           "系统正在处理中...",
@@ -537,6 +568,9 @@
             },
             body: JSON.stringify(postData)
           });
+
+          inputCaptcha.textContent = "";
+          generateCaptcha();
         } finally {
           submitBtn.disabled = false;
           submitBtn.textContent = '提交';

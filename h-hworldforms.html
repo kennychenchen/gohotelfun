@@ -615,6 +615,8 @@
           document.getElementById('vcode').value = '';
           // 重新生成验证码
           correctCaptcha = generateCaptcha();
+          // 次数加1
+          updatePhoneAttempts(phone,attempts+1);
         }
 
         return false;

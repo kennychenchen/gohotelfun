@@ -469,7 +469,7 @@
       function generateCaptcha() {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXY123456789';
         let captcha = '';
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 4; i++) {
           captcha += characters.charAt(Math.floor(Math.random() * characters.length));
         }
         document.getElementById('vcode').textContent = "";
@@ -478,8 +478,35 @@
         return captcha;
       }
 
+      // 获取当前日期
+      function getCurrentDate() {
+        const now = new Date();
+        return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+      }
+
+      // 从 localStorage 中获取手机号的尝试信息
+      function getPhoneAttempts(phone) {
+        const storedData = localStorage.getItem(phone);
+        if (storedData) {
+          const { date, attempts } = JSON.parse(storedData);
+          if (date === getCurrentDate()) {
+            return attempts;
+          }
+        }
+        return 0;
+      }
+      // 更新 localStorage 中手机号的尝试信息
+      function updatePhoneAttempts(phone, attempts) {
+        const data = {
+          date: getCurrentDate(),
+          attempts
+        };
+        localStorage.setItem(phone, JSON.stringify(data));
+      }
+
       // 页面加载时生成初始验证码
-      const correctCaptcha = generateCaptcha();
+      correctCaptcha = generateCaptcha();
+
 
       async function handleSubmit(event) {
         event.preventDefault();
@@ -510,6 +537,16 @@
           submitBtn.disabled = false;
           return false;
         }
+
+        // 获取该手机号今天的尝试次数
+        const attempts = getPhoneAttempts(phone);
+
+        if (attempts >= 3) {
+          resultDiv.textContent = '该手机号今天尝试次数已达上限，请明天再试';
+          submitBtn.disabled = false;
+          return false;
+        }
+
         submitBtn.disabled = true;
         submitBtn.textContent = '处理中...';
         // 生成随机提示语
@@ -551,7 +588,7 @@
 
         try {
           for (const tip of selectedTips) {
-            await new Promise(resolve => setTimeout(resolve, 900));
+            await new Promise(resolve => setTimeout(resolve, 1500));
             const li = document.createElement('li');
             li.textContent = tip;
             tipList.appendChild(li);
@@ -569,11 +606,15 @@
             body: JSON.stringify(postData)
           });
 
-          inputCaptcha.textContent = "";
-          generateCaptcha();
+
         } finally {
           submitBtn.disabled = false;
           submitBtn.textContent = '提交';
+          // 清空手机号和验证码输入框
+          document.getElementById('phone').value = '';
+          document.getElementById('vcode').value = '';
+          // 重新生成验证码
+          correctCaptcha = generateCaptcha();
         }
 
         return false;
